@@ -4,8 +4,12 @@ Configuration settings for the Raspberry Pi Learning App
 import os
 
 # Display Settings
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 480
+# Common resolutions:
+# 3.5" screen: 480x320
+# 7" screen: 800x480
+# 10" screen: 1024x600
+SCREEN_WIDTH = 480
+SCREEN_HEIGHT = 320
 FULLSCREEN = True  # Set to False for windowed mode (useful for testing on non-Pi systems)
 
 # Colors (RGB)
@@ -35,12 +39,15 @@ DASH_LENGTH = 10
 DASH_GAP = 5
 
 # UI Settings
-BUTTON_HEIGHT = 60
-BUTTON_PADDING = 20
-FONT_SIZE_LARGE = 72
-FONT_SIZE_MEDIUM = 48
-FONT_SIZE_SMALL = 32
-CHARACTER_DISPLAY_SIZE = 300  # Size of character in tracing screen
+BUTTON_HEIGHT = 40  # Reduced for smaller screen
+BUTTON_PADDING = 10
+FONT_SIZE_LARGE = 48  # Reduced for smaller screen
+FONT_SIZE_MEDIUM = 32
+FONT_SIZE_SMALL = 24
+CHARACTER_DISPLAY_SIZE = 180  # Reduced for 3.5" screen
+CHARACTER_GRID_COLS = 2  # 2x2 grid (4 characters visible at once)
+CHARACTER_GRID_ROWS = 2
+CHARACTER_BUTTON_SIZE = 100  # Size of character buttons in grid
 
 # Animation Settings
 ANIMATION_SPEED = 0.1

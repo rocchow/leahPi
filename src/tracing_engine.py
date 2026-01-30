@@ -29,7 +29,8 @@ class TracingEngine:
         screen_width, screen_height = config.SCREEN_WIDTH, config.SCREEN_HEIGHT
         self.display_area_size = config.CHARACTER_DISPLAY_SIZE
         self.display_x = (screen_width - self.display_area_size) // 2
-        self.display_y = (screen_height - self.display_area_size) // 2 - 20
+        # Adjust Y position for smaller screen (account for title and buttons)
+        self.display_y = 50  # Start below title/pronunciation
         
         self._prepare_guide_paths()
     
@@ -218,11 +219,11 @@ class TracingEngine:
         
         # Draw completion indicator
         if self.completion_percentage > 0:
-            # Progress bar at bottom
-            bar_width = 200
-            bar_height = 20
+            # Progress bar at bottom (smaller for 3.5" screen)
+            bar_width = 150
+            bar_height = 12
             bar_x = (config.SCREEN_WIDTH - bar_width) // 2
-            bar_y = config.SCREEN_HEIGHT - 60
+            bar_y = config.SCREEN_HEIGHT - 50
             
             # Background
             pygame.draw.rect(self.screen, (200, 200, 200), (bar_x, bar_y, bar_width, bar_height))

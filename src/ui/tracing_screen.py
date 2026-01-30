@@ -46,31 +46,33 @@ class TracingScreen:
     
     def _setup_buttons(self):
         """Create navigation and control buttons"""
-        button_width = 120
-        button_height = config.BUTTON_HEIGHT
-        button_y = config.SCREEN_HEIGHT - 50
+        button_width = 80  # Reduced for smaller screen
+        button_height = 30  # Reduced height
+        button_y = config.SCREEN_HEIGHT - 35
+        spacing = 5
+        
+        # Calculate total width and center
+        total_width = 3 * button_width + 2 * spacing
+        start_x = (config.SCREEN_WIDTH - total_width) // 2
         
         # Back button
-        back_x = 20
         self.back_button = Button(
-            back_x, button_y, button_width, button_height,
-            "Back", config.FONT_SIZE_SMALL,
+            start_x, button_y, button_width, button_height,
+            "Back", config.FONT_SIZE_SMALL - 4,
             callback=lambda: self._on_back()
         )
         
         # Clear button
-        clear_x = config.SCREEN_WIDTH // 2 - button_width // 2
         self.clear_button = Button(
-            clear_x, button_y, button_width, button_height,
-            "Clear", config.FONT_SIZE_SMALL,
+            start_x + button_width + spacing, button_y, button_width, button_height,
+            "Clear", config.FONT_SIZE_SMALL - 4,
             callback=lambda: self._on_clear()
         )
         
         # Next button
-        next_x = config.SCREEN_WIDTH - button_width - 20
         self.next_button = Button(
-            next_x, button_y, button_width, button_height,
-            "Next", config.FONT_SIZE_SMALL,
+            start_x + 2 * (button_width + spacing), button_y, button_width, button_height,
+            "Next", config.FONT_SIZE_SMALL - 4,
             callback=lambda: self._on_next()
         )
         
@@ -153,17 +155,17 @@ class TracingScreen:
             self.screen.blit(error_text, error_rect)
             return
         
-        # Draw character name at top
-        name_font = pygame.font.Font(None, config.FONT_SIZE_LARGE)
+        # Draw character name at top (smaller for 3.5" screen)
+        name_font = pygame.font.Font(None, config.FONT_SIZE_MEDIUM)
         name_text = name_font.render(self.character, True, config.COLOR_TEXT)
-        name_rect = name_text.get_rect(center=(config.SCREEN_WIDTH // 2, 30))
+        name_rect = name_text.get_rect(center=(config.SCREEN_WIDTH // 2, 15))
         self.screen.blit(name_text, name_rect)
         
-        # Draw pronunciation hint
+        # Draw pronunciation hint (smaller)
         if self.character_data and 'pronunciation' in self.character_data:
-            pron_font = pygame.font.Font(None, config.FONT_SIZE_SMALL)
+            pron_font = pygame.font.Font(None, config.FONT_SIZE_SMALL - 4)
             pron_text = pron_font.render(f"({self.character_data['pronunciation']})", True, config.COLOR_TEXT)
-            pron_rect = pron_text.get_rect(center=(config.SCREEN_WIDTH // 2, 60))
+            pron_rect = pron_text.get_rect(center=(config.SCREEN_WIDTH // 2, 30))
             self.screen.blit(pron_text, pron_rect)
         
         # Render tracing engine (guide lines and user drawing)
@@ -188,9 +190,5 @@ class TracingScreen:
         for btn in self.buttons:
             btn.draw(self.screen)
         
-        # Draw instructions
-        if not self.tracing_engine.user_path:
-            inst_font = pygame.font.Font(None, config.FONT_SIZE_SMALL)
-            inst_text = inst_font.render("Trace the character with your finger", True, config.COLOR_TEXT)
-            inst_rect = inst_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT - 100))
-            self.screen.blit(inst_text, inst_rect)
+        # Draw instructions (removed for smaller screen to save space)
+        # Instructions are clear from the interface

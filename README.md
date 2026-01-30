@@ -31,21 +31,45 @@ An interactive learning application for Raspberry Pi touchscreen that teaches ki
 
 ### 1. Install Dependencies
 
+**Option A: Quick Setup (Recommended)**
+```bash
+# Run the setup script
+bash setup-pi.sh
+```
+
+**Option B: Manual Installation**
+
+For newer Raspberry Pi OS (externally-managed Python environment):
+
 ```bash
 # Update system packages
 sudo apt update
-sudo apt upgrade -y
 
-# Install Python and pip if not already installed
-sudo apt install python3 python3-pip -y
+# Install system Python packages (recommended)
+sudo apt install -y python3-pygame python3-numpy python3-full
+```
 
-# Install system dependencies for Pygame
-sudo apt install python3-pygame python3-dev libsdl-dev libsdl-image1.2-dev \
-  libsdl-mixer1.2-dev libsdl-ttf2.0-dev libportmidi-dev libswscale-dev \
-  libavformat-dev libavcodec-dev libfreetype6-dev -y
+**Option C: Virtual Environment (if system packages don't work)**
 
-# Install Python packages
-pip3 install -r requirements.txt
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Install packages
+pip install pygame numpy
+
+# To run the app later, activate venv first:
+# source venv/bin/activate && python3 main.py
+```
+
+**Option D: Override (Not Recommended)**
+
+If you must use pip directly:
+```bash
+pip3 install --break-system-packages -r requirements.txt
 ```
 
 ### 2. Configure Touchscreen

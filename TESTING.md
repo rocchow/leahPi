@@ -18,15 +18,31 @@ cd ~/leahPi
 
 ### Step 3: Install Dependencies (First Time Only)
 
+**Quick Setup:**
+```bash
+bash setup-pi.sh
+```
+
+**Manual Setup:**
+
+For newer Raspberry Pi OS (externally-managed environment):
+
 ```bash
 # Update system
 sudo apt update
 
-# Install Python dependencies
-pip3 install -r requirements.txt
+# Install system packages (recommended)
+sudo apt install -y python3-pygame python3-numpy python3-full
+```
 
-# If pip3 install fails, try:
-sudo apt install python3-pygame python3-numpy -y
+**Alternative: Virtual Environment**
+
+If system packages aren't available:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install pygame numpy
+# Remember to activate venv before running: source venv/bin/activate
 ```
 
 ### Step 4: Configure for Testing

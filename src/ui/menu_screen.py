@@ -114,7 +114,7 @@ class MenuScreen:
         
         return None
     
-    def update(self):
+    def update(self, dt=0):
         """Update screen state"""
         pass
     

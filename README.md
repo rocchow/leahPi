@@ -118,25 +118,27 @@ Before running on the Raspberry Pi, you can test in windowed mode on your develo
 
 ### Running on Raspberry Pi
 
-1. Navigate to the project directory:
-   ```bash
-   cd LeahLearning
-   ```
+**Option 1: Run directly**
+```bash
+cd ~/leahPi
+python3 main.py
+```
 
-2. Run the application:
-   ```bash
-   python3 main.py
-   ```
+**Option 2: Desktop Icon**
+```bash
+# Set up desktop icon (one-time setup)
+bash setup-desktop.sh
+# Then double-click the icon on desktop
+```
 
-3. To run automatically on boot, add to `/etc/rc.local`:
-   ```bash
-   sudo nano /etc/rc.local
-   ```
-   
-   Add before `exit 0`:
-   ```bash
-   cd /path/to/LeahLearning && python3 main.py &
-   ```
+**Option 3: Auto-start Service**
+```bash
+# Set up auto-start service (one-time setup)
+bash setup-desktop.sh
+# Service will start automatically on boot
+```
+
+See [DESKTOP_SETUP.md](DESKTOP_SETUP.md) for detailed setup instructions.
 
 ### Using the Application
 

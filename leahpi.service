@@ -1,0 +1,22 @@
+[Unit]
+Description=Leah Learning App - Interactive Learning Application
+After=network.target graphical.target
+Wants=graphical.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/leahPi
+ExecStart=/usr/bin/python3 /home/pi/leahPi/main.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Environment variables if needed
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/pi/.Xauthority
+
+[Install]
+WantedBy=graphical.target

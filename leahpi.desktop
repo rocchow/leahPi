@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Leah Learning App
+Comment=Interactive learning app for writing practice
+Exec=/home/pi/leahPi/run-app.sh
+Icon=/home/pi/leahPi/assets/icon.png
+Terminal=false
+Categories=Education;Game;
+StartupNotify=true
